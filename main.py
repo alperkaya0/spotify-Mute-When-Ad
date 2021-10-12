@@ -19,7 +19,7 @@ volume = cast(interface, POINTER(IAudioEndpointVolume))
 SPOTIFY_GET_CURRENT_TRACK_URL = 'https://api.spotify.com/v1/me/player/currently-playing'
 ACCESS_TOKEN = ''
 REFRESH_TOKEN = ""
-auth_str = bytes('{}:{}'.format("Client ID HERE", "Secret Client ID Here"), 'utf-8')
+auth_str = bytes('{}:{}'.format("Client ID HERE", "Client Secret ID Here"), 'utf-8')
 BASE64 = base64.b64encode(auth_str).decode('utf-8')
 
 
