@@ -19,7 +19,7 @@ volume = cast(interface, POINTER(IAudioEndpointVolume))
 SPOTIFY_GET_CURRENT_TRACK_URL = 'https://api.spotify.com/v1/me/player/currently-playing'
 ACCESS_TOKEN = ''
 REFRESH_TOKEN = ""
-auth_str = bytes('{}:{}'.format(CLIENT_ID_HERE!!!!!!!!, CLIENT_SECRET HERE!!!!!!!!!), 'utf-8')
+auth_str = bytes('{}:{}'.format("Client ID HERE", "Secret Client ID Here"), 'utf-8')
 BASE64 = base64.b64encode(auth_str).decode('utf-8')
 
 
@@ -55,6 +55,7 @@ class Refresh:
 
 
 def get_current_track(access_token):
+    token_expired = False
     response = requests.get(
         SPOTIFY_GET_CURRENT_TRACK_URL,
         headers={
@@ -62,6 +63,12 @@ def get_current_track(access_token):
         }
     )
     json_resp = response.json()
+    try:
+        if str(json_resp["error"]["status"]) == "401":
+            token_expired = True
+            return {},token_expired
+    except:
+        pass
 
     track_id = json_resp['item']['id']
     track_name = json_resp['item']['name']
@@ -78,7 +85,7 @@ def get_current_track(access_token):
     	"link": link
     }
 
-    return current_track_info
+    return current_track_info,token_expired
 
 def getcurrentvolume():
     # Get current volume 
@@ -106,18 +113,18 @@ def unmute():
 def main():
     refresher = Refresh()
     ACCESS_TOKEN = refresher.refresh()
-    token_expires_counter = 0
     current_track_id = None
     ad_joined = False
+    token_expired = False
 
     while True:
-        token_expires_counter += 1
-        if token_expires_counter > 3000:
+        if token_expired:
             ACCESS_TOKEN = refresher.refresh()
-            token_expires_counter = 0
+            print(ACCESS_TOKEN)
+            token_expired = False
         time.sleep(1)
         try:
-            current_track_info = get_current_track(ACCESS_TOKEN)
+            current_track_info,token_expired = get_current_track(ACCESS_TOKEN)
             if current_track_info['id'] != current_track_id:
                 pprint(current_track_info,indent=4,)
             current_track_id = current_track_info['id']
@@ -125,7 +132,7 @@ def main():
                 unmute()
                 ad_joined = False
         except Exception as e:
-            print(e)
+            print("Token expired i guess" if e == "item" else e)
             ad_joined = True
             mute()
 
