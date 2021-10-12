@@ -112,10 +112,10 @@ def main():
 
     while True:
         token_expires_counter += 1
-        if token_expires_counter > 1000:
+        if token_expires_counter > 3000:
             ACCESS_TOKEN = refresher.refresh()
             token_expires_counter = 0
-        time.sleep(3.5)
+        time.sleep(1)
         try:
             current_track_info = get_current_track(ACCESS_TOKEN)
             if current_track_info['id'] != current_track_id:
