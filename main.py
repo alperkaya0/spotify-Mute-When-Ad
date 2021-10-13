@@ -135,7 +135,7 @@ def main():
         except Exception as e:
             print("Token expired i guess" if e == "item" else e)
             ad_joined = True
-            mute()
+            if not token_expired:mute()
 
 if __name__ == '__main__':
     main()
