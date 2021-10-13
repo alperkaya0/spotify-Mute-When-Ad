@@ -111,6 +111,7 @@ def unmute():
             volume.SetMute(0, None)
 
 def main():
+    unmute()
     refresher = Refresh()
     ACCESS_TOKEN = refresher.refresh()
     current_track_id = None
