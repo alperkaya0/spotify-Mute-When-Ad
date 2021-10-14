@@ -1,4 +1,4 @@
-Please DON'T forget to unmute the video!</br>
+:warning: Please DON'T forget to unmute the video!</br>
 </br>
 [![Demo](https://github.com/alperkaya0/spotify-Mute-When-Ad/blob/master/Demo.png)](https://www.youtube.com/watch?v=9S1YdqhvvEI&ab_channel=AlperKaya)
 
