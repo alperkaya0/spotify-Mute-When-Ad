@@ -2,7 +2,7 @@
 </br>
 [![Demo](https://github.com/alperkaya0/spotify-Mute-When-Ad/blob/master/Demo.png)](https://www.youtube.com/watch?v=9S1YdqhvvEI&ab_channel=AlperKaya)
 </br></br>
-------------------------------------------------------------------------------------------------------------------------------------
+--
 </br>
 Create a new app from spotify developers site, and fill the wanted constants within the code according to this video :</br></br>
 https://www.youtube.com/watch?v=-FsFT6OwE1A&ab_channel=EuanMorgan </br> **please give his video a thumbs up** </br></br> 
